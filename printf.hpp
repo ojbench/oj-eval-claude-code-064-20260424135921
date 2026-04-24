@@ -161,7 +161,7 @@ struct formatter<std::vector<T>> {
     static auto format_to(std::ostream &os, const std::vector<T> &val, sv_t spec) -> void {
         os << "[";
         for (std::size_t i = 0; i < val.size(); ++i) {
-            formatter<T>::format_to(os, val[i], "_");
+            formatter<std::decay_t<T>>::format_to(os, val[i], "_");
             if (i + 1 < val.size()) os << ",";
         }
         os << "]";
